@@ -255,13 +255,13 @@ function update() {
 		// 	.easing(TWEEN.Easing.Quadratic.Out)
 		// 	.start();
 
-		var angleX = elapsed * 0.5; // 控制X轴旋转速度
-		var angleY = elapsed * 0.3; // 控制Y轴旋转速度
-		var angleZ = elapsed * 0.2; // 控制Z轴旋转速度
+		// var angleX = elapsed * 0.5; // 控制X轴旋转速度
+		// var angleY = elapsed * 0.3; // 控制Y轴旋转速度
+		// var angleZ = elapsed * 0.2; // 控制Z轴旋转速度
 
 		// // 更新对象的旋转
 		// object.rotation.x += angleX;
-		object.rotation.y += angleY;
+		// object.rotation.y += angleY;
 		// object.rotation.z += angleZ;
 
 		// object.rotation.y += 0.05;
@@ -271,9 +271,9 @@ function update() {
 	// 更新TWEEN
 	TWEEN.update();
 
-	// if (ballGroup) {
-	// 	ballGroup.rotation.y += 0.05;
-	// }
+	if (ballGroup) {
+		ballGroup.rotation.y += 0.05;
+	}
 }
 // target.rotation.x, y: target.rotation.y, z: target.rotation.z
 
