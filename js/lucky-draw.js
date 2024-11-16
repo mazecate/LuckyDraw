@@ -246,6 +246,7 @@ new Vue({
     // 开始抽奖
     startLuckyDraw() {
       if (this.tempNumber != this.number) {
+        isRotating = true;
         this.tempNumber = this.number
         if (animateType === 'sphere') {
           this.isLuckyDraw = true
@@ -270,6 +271,7 @@ new Vue({
     // 停止抽奖
     stopLuckyDraw() {
       if (this.tempNumber === this.number) {
+        isRotating = false;
         if (this.luckyDrawTime) {
           clearInterval(this.luckyDrawTime)
           this.luckyDrawTime = undefined
