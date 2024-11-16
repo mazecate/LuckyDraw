@@ -47,6 +47,10 @@ var targets = { sphere: [], grid: [] }
 var animateTypes = ['sphere', 'grid', 'none']
 var animateType = undefined
 var animateDuration = 2000
+var clock = new THREE.Clock(); // 时钟对象，用于计算时间间隔
+var isRotating = false;
+
+var ballgroup = null
 
 // 初始化
 init()
@@ -61,6 +65,11 @@ function init() {
 
 	// 场景
 	scene = new THREE.Scene()
+
+  // loklok is here
+  ballGroup = new THREE.Object3D();
+
+  scene.add(ballGroup);
 
 	// sphere || none
 	var vector = new THREE.Vector3()
@@ -98,6 +107,7 @@ function init() {
 		object.position.y = Math.random() * 4000 - 2000
 		object.position.z = Math.random() * 4000 - 2000
 		scene.add(object)
+		ballGroup.add(object);
 		objects.push(object)
 
 		// sphere
@@ -178,13 +188,22 @@ function onWindowResize() {
 // 动画
 function animate() {
 	requestAnimationFrame(animate)
+	if (isRotating) {
+		console.log("#213212")
+		update();
+	}
 	TWEEN.update()
+	renderer.render(scene, camera);
+	// cssRenderer.render(cssScene, camera);
 }
 
 // 重新绘制
 function render() {
 	renderer.render(scene, camera)
 }
+// function cssRender() {
+// 	cssRenderer.render(cssScene, camera)
+// }
 
 // 开始动画
 function onlyAnimate() {
@@ -219,3 +238,43 @@ function setAnimate(type) {
 		transform(objects, animateDuration)
 	}
 }
+
+// 旋转
+function update() {
+	var elapsed = clock.getElapsedTime();
+	// 旋转
+	for (var i = 0; i < objects.length; i++) {
+		var object = objects[i];
+		// var angle = i * 0.175 + Math.PI + elapsed * 1.2;
+		// var targetX = 900 * Math.sin(angle);
+		// var targetZ = 900 * Math.cos(angle);
+
+		// // 创建TWEEN动画
+		// new TWEEN.Tween(object.rotation)
+		// 	.to({ x: targetX, z: targetZ }, 100)
+		// 	.easing(TWEEN.Easing.Quadratic.Out)
+		// 	.start();
+
+		var angleX = elapsed * 0.5; // 控制X轴旋转速度
+		var angleY = elapsed * 0.3; // 控制Y轴旋转速度
+		var angleZ = elapsed * 0.2; // 控制Z轴旋转速度
+
+		// // 更新对象的旋转
+		// object.rotation.x += angleX;
+		object.rotation.y += angleY;
+		// object.rotation.z += angleZ;
+
+		// object.rotation.y += 0.05;
+	}
+
+
+	// 更新TWEEN
+	TWEEN.update();
+
+	// if (ballGroup) {
+	// 	ballGroup.rotation.y += 0.05;
+	// }
+}
+// target.rotation.x, y: target.rotation.y, z: target.rotation.z
+
+// https://github.com/An-314/DZMLuckyDraw/blob/main/js/lucky-draw-animation.js#L201
