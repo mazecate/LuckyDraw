@@ -251,6 +251,7 @@ function setAnimate(type) {
 
 		new TWEEN.Tween(ballGroup.rotation)
 			.to ({x:0, y: Math.round(ballGroup.rotation.y / (Math.PI * 2)) * Math.PI, z:0}, animateDuration)
+			// .to ({x:0, y: 0, z:0}, animateDuration)
 			.easing(TWEEN.Easing.Exponential.InOut)
 			.start();
 	} else {
