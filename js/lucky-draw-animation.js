@@ -275,6 +275,3 @@ function update() {
 		ballGroup.rotation.y += 0.05;
 	}
 }
-// target.rotation.x, y: target.rotation.y, z: target.rotation.z
-
-// https://github.com/An-314/DZMLuckyDraw/blob/main/js/lucky-draw-animation.js#L201
